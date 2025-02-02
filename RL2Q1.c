@@ -33,7 +33,7 @@ void inserir(arvore **topo, int valor, int *log) {
 
 	arvore *atual = *topo;
 	while (1) {
-		int comparacao = comparar(atual, novo);
+		char comparacao = comparar(atual, novo);
 
 		if (comparacao == 'e') {
 			if (atual->esq == NULL) {
