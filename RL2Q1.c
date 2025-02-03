@@ -129,10 +129,10 @@ int main() {
 			token = strtok(NULL, " ");
 		}
 
-		arvore *predecessorMax = acharMax(&topo);
-		int maxValor = (predecessorMax && predecessorMax->dir) ? predecessorMax->dir->valor : topo->valor;
-		int maxAltura = (predecessorMax && predecessorMax->dir) ? predecessorMax->dir->altura : topo->altura;
-		int predValor = (predecessorMax) ? predecessorMax->valor : -1;
+		arvore *maxFuncao = acharMax(&topo);
+		int maxValor = (maxFuncao && maxFuncao->dir) ? maxFuncao->dir->valor : topo->valor;
+		int maxAltura = (maxFuncao && maxFuncao->dir) ? maxFuncao->dir->altura : topo->altura;
+		int predValor = (maxFuncao) ? maxFuncao->valor : -1;
 
 		char linhaOutput[1024] = "";
 		for (int j = 0; j < logTam; j++) {
