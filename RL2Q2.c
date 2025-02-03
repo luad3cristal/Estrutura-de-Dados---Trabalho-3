@@ -23,9 +23,7 @@ char comparar(arvore *atual, arvore *novo) {
   if (novo->valor != atual->valor) {
     return (novo->valor < atual->valor) ? 'e' : 'd';
   }
-  else {
-    return 'i';
-  }
+  return 'i';
 }
 
 void inserir(arvore **topo, int valor) {
@@ -55,7 +53,7 @@ void inserir(arvore **topo, int valor) {
       }
       atual = atual->dir;
     }
-    else if (comparacao == 'i') {
+    else {
       free(novo);
       break;
     }
@@ -65,17 +63,17 @@ void inserir(arvore **topo, int valor) {
 void percorrerEsq(arvore *topo, int *somaEsq) {
   if (topo == NULL) return;
 
-  *somaEsq += topo->valor;  // Soma o valor do nó atual
-  percorrerEsq(topo->esq, somaEsq); // Chama recursivamente para a esquerda
-  percorrerEsq(topo->dir, somaEsq); // Chama recursivamente para a direita
+  *somaEsq += topo->valor;
+  percorrerEsq(topo->esq, somaEsq);
+  percorrerEsq(topo->dir, somaEsq);
 }
 
 void percorrerDir(arvore *topo, int *somaDir) {
   if (topo == NULL) return;
 
-  *somaDir += topo->valor;  // Soma o valor do nó atual
-  percorrerDir(topo->dir, somaDir); // Chama recursivamente para a direita
-  percorrerDir(topo->esq, somaDir); // Chama recursivamente para a esquerda
+  *somaDir += topo->valor;
+  percorrerDir(topo->dir, somaDir);
+  percorrerDir(topo->esq, somaDir);
 }
 
 void emOrdem(arvore **topo, char *log) {
@@ -90,11 +88,11 @@ void emOrdem(arvore **topo, char *log) {
     total = somaDir - somaEsq;
 
     char buffer[50];
-    sprintf(buffer, "%d (%d)", (*topo)->valor, total);  // Remove o espaço final
+    sprintf(buffer, "%d (%d)", (*topo)->valor, total); 
     if (strlen(log) > 0) {
-        strcat(log, " ");  // Adiciona um espaço se já houver algo no log
+        strcat(log, " "); 
     }
-    strcat(log, buffer);  // Adiciona o valor e a diferença no log
+    strcat(log, buffer);  
 
     emOrdem(&((*topo)->dir), log);
   }
